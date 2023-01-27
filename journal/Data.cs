@@ -8,27 +8,39 @@ public class data
 
     public void getEntries()
     {
+        string[] lines = System.IO.File.ReadAllLines(filename);
 
+        foreach (string line in lines)
+        {
+            _entryList.Add(line);
+        }
     }
 
     public void Load()
     {
+        Console.WriteLine("Which entry would you like to load? (please enter a number)");
+        int entryNum = int.Parse(Console.ReadLine());
 
+        return _entryList[entryNum];
     }
     
-    public void Save()
+    public void Save(string saveString)
     {
-        Console.Write("What file do you want to save to?");
-        string filename = Console.ReadLine();
+        Console.WriteLine("What file do you want to save to?");
+        filename = Console.ReadLine();
 
-        using (StreamWriter outputFile = new StreamWriter(filename))
+        using (StreamWriter entryFile = new StreamWriter(filename))
         {
-            
+            entryFile.WriteLine(saveString);
+            _entryList.Add(saveString);
         }
     }
 
     public void delete()
     {
+        Console.WriteLine("Which entry would you like to delete? (please enter a number)");
+        int entryNum = int.Parse(Console.ReadLine);
 
+        _entryList.RemoveAt(entryNum);
     }
 }
