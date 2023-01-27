@@ -2,8 +2,6 @@
 {
     "version": "0.2.0",
     "configurations": [
-        
-    
 
         {
             "name": "Sandbox Project",
@@ -247,6 +245,19 @@
             "program": "${workspaceFolder}/final/Foundation4/bin/Debug/net7.0/Foundation4.dll",
             "args": [],
             "cwd": "${workspaceFolder}/final/Foundation4",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "stopAtEntry": false
+        },
+
+        {
+            "name": "C# Prep 1",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-csharp-prep-Prep1",
+            "program": "${workspaceFolder}/csharp-prep/Prep1/bin/Debug/net7.0/Prep1.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/csharp-prep/Prep1",
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
