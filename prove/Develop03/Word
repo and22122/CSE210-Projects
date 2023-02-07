@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+
+class word
+{
+    private string _text = "";
+    private bool _isHidden = false;
+
+    public word (String word)
+    {
+        _text = word;
+    }
+
+    public void Show()
+    {
+        _isHidden = true;
+    }
+
+    public void Hide()
+    {
+        _isHidden = false;
+    }
+
+    public void GetText()
+    {
+        if (_isHidden)
+        {
+            foreach (char c in _text)
+            {
+                System.Console.Write("_");
+            }
+        }
+        else
+        {
+            System.Console.Write(_text);
+        }
+    }
+
+    public bool isBlank()
+    {
+        return _isHidden;
+    }
+}

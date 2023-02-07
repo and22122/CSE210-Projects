@@ -1,9 +1,24 @@
 using System;
+using System.Collections.Generic;
 
 class Program
 {
-    static void Main(string[] args)
+    scripture s = new scripture();
+
+    bool repeatloop = true;
+
+    do
     {
-        Console.WriteLine("Hello Develop03 World!");
-    }
+        System.Console.Write("Do you want to continue? type Enter to continue; type quit to quit");
+        string input = System.Console.ReadLine();
+        
+        if (input == 'quit')
+        {
+            repeatloop = false;
+        }
+        else if (input == "")
+        {
+            repeatloop = true;
+        }
+    } while (repeatloop);
 }

@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+
+class verse
+{
+    List<word> _words = new List<word>();
+
+    public verse(String verse)
+    {
+        char[] delimiterChars = {' ', ',', '.', ':', '\t'};
+        string[] words = verse.Split(delimiterChars);
+
+        foreach (string wordStr in words)
+        {
+            word word = new word(wordStr);
+            _words.Add(word);
+        }
+    }
+
+    public void HideRandomWord()
+    {
+        Random randGen = new Random();
+        int wordNum = randGen.Next() * _words.Count;
+        _words[wordNum].Hide();
+    }
+
+    public void GetText()
+    {
+        foreach (word w in _words)
+        {
+            w.GetText();
+            System.Console.Write(" ");
+        }
+    }
+
+    public bool AllHidden()
+    {
+        bool blankedout = true;
+
+        foreach (word w in _words)
+        {
+            blankedout = (blankedout && w.isBlank());
+        }
+
+        return blankedout;
+    }
+}

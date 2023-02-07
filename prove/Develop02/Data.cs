@@ -16,7 +16,7 @@ public class data
         }
     }
 
-    public void Load()
+    public string Load()
     {
         Console.WriteLine("Which entry would you like to load? (please enter a number)");
         int entryNum = int.Parse(Console.ReadLine());
@@ -27,7 +27,7 @@ public class data
     public void Save(string saveString)
     {
         Console.WriteLine("What file do you want to save to?");
-        filename = Console.ReadLine();
+        string filename = Console.ReadLine();
 
         using (StreamWriter entryFile = new StreamWriter(filename))
         {
@@ -39,7 +39,7 @@ public class data
     public void delete()
     {
         Console.WriteLine("Which entry would you like to delete? (please enter a number)");
-        int entryNum = int.Parse(Console.ReadLine);
+        int entryNum = int.Parse(Console.ReadLine());
 
         _entryList.RemoveAt(entryNum);
     }
