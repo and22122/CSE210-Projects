@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 class Program
 {
-    scripture s = new scripture();
+    scripture scrip = new scripture();
 
     bool repeatloop = true;
 
@@ -19,6 +19,11 @@ class Program
         else if (input == "")
         {
             repeatloop = true;
+        }
+
+        if (scrip.AllAreHidden())
+        {
+            repeatloop = false;
         }
     } while (repeatloop);
 }
