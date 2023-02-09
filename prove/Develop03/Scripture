@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 
-class scripture
+public class Scripture
 {
     private string _reference = "";
-    private List<verse> _verses = new List<verse>();
+    private List<Verse> _verses = new List<Verse>();
 
-    public scripture()
+    private Scripture()
     {
         System.Console.Write("What is the scripture reference? (e.g. Proverbs 3:5-6)");
         _reference = Console.ReadLine();
@@ -16,7 +16,7 @@ class scripture
         do
         {
             System.Console.WriteLine("What verse do you want to add?");            
-            _verses.Add(new verse(System.Console.ReadLine()));
+            _verses.Add(new Verse(System.Console.ReadLine()));
 
             System.Console.WriteLine("Would you like to add another verse?(y/n)");
             string input = System.Console.ReadLine();
@@ -44,7 +44,7 @@ class scripture
     {
         bool allblank = true;
 
-        foreach (verse v in _verses)
+        foreach (Verse v in _verses)
         {
             allblank = (allblank && v.AllHidden());
         }

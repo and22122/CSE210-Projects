@@ -1,18 +1,18 @@
 using System;
 using System.Collections.Generic;
 
-class verse
+public class Verse
 {
-    List<word> _words = new List<word>();
+    List<Word> _words = new List<Word>();
 
-    public verse(String verse)
+    public Verse(String verse)
     {
         char[] delimiterChars = {' ', ',', '.', ':', '\t'};
         string[] words = verse.Split(delimiterChars);
 
         foreach (string wordStr in words)
         {
-            word word = new word(wordStr);
+            Word word = new Word(wordStr);
             _words.Add(word);
         }
     }
@@ -26,7 +26,7 @@ class verse
 
     public void GetText()
     {
-        foreach (word w in _words)
+        foreach (Word w in _words)
         {
             w.GetText();
             System.Console.Write(" ");
@@ -37,7 +37,7 @@ class verse
     {
         bool blankedout = true;
 
-        foreach (word w in _words)
+        foreach (Word w in _words)
         {
             blankedout = (blankedout && w.isBlank());
         }
