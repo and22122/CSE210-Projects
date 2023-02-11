@@ -54,6 +54,7 @@ public class Scripture
 
     public void writeScripture()
     {
+        Console.Write(_reference);
         foreach (Verse v in _verses)
         {
             v.GetText();
