@@ -13,19 +13,19 @@ public class Word
 
     public void Show()
     {
-        _isHidden = true;
+        _isHidden = false;
     }
 
     public void Hide()
     {
-        _isHidden = false;
+        _isHidden = true;
     }
 
     public void GetText()
     {
         if (_isHidden)
         {
-            foreach (char c in _text)
+            for (int i = 0; i < _text.Length; i ++)
             {
                 System.Console.Write("_");
             }

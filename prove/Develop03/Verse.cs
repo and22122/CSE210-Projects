@@ -7,7 +7,7 @@ public class Verse
 
     public Verse(String verse)
     {
-        char[] delimiterChars = {' ', ',', '.', ':', '\t'};
+        char[] delimiterChars = {' ', '\t'};
         string[] words = verse.Split(delimiterChars);
 
         foreach (string wordStr in words)
@@ -20,7 +20,7 @@ public class Verse
     public void HideRandomWord()
     {
         Random randGen = new Random();
-        int wordNum = randGen.Next() * _words.Count;
+        int wordNum = (int)(randGen.NextDouble() * _words.Count);
         _words[wordNum].Hide();
     }
 
@@ -31,6 +31,8 @@ public class Verse
             w.GetText();
             System.Console.Write(" ");
         }
+
+        System.Console.Write("\n");
     }
 
     public bool AllHidden()

@@ -6,7 +6,7 @@ public class Scripture
     private string _reference = "";
     private List<Verse> _verses = new List<Verse>();
 
-    private Scripture()
+    public Scripture()
     {
         System.Console.Write("What is the scripture reference? (e.g. Proverbs 3:5-6)");
         _reference = Console.ReadLine();
@@ -30,11 +30,11 @@ public class Scripture
     public void HideWords()
     {
         Random randGen = new Random();
-        int iters = randGen.Next() * 3 + 2;
+        int iters = (int)(randGen.NextDouble() * 3 + 3);
 
         for (int i = 0; i < iters; i ++)
         {
-            int verseNum = randGen.Next() * _verses.Count();
+            int verseNum = (int)(randGen.NextDouble() * _verses.Count());
 
             _verses[verseNum].HideRandomWord();
         }
@@ -50,5 +50,13 @@ public class Scripture
         }
 
         return allblank;
+    }
+
+    public void writeScripture()
+    {
+        foreach (Verse v in _verses)
+        {
+            v.GetText();
+        }
     }
 }

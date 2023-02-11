@@ -11,6 +11,8 @@ class Program
 
         do
         {
+            scrip.writeScripture();
+
             System.Console.Write("Do you want to continue? type Enter to continue; type quit to quit");
             string input = System.Console.ReadLine();
             
@@ -27,6 +29,8 @@ class Program
             {
                 repeatloop = false;
             }
+
+            scrip.HideWords();
         } while (repeatloop);
     }
 }
