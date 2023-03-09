@@ -17,42 +17,6 @@ public class Goals
 
         return totalPoints;
     }
-    public Goal GoalFromString(string str)
-    {
-        string gt = str.Split("|")[0];
-        int pts = int.Parse(str.Split("|")[1]);
-        int tm = int.Parse(str.Split("|")[2]);
-        bool c = bool.Parse(str.Split("|")[3]);
-        string d = str.Split("|")[4];
-
-        if (gt == "SimpleGoal")
-        {
-            SimpleGoal g = new SimpleGoal(pts, tm, d);
-
-            g.SetCompleted(c);
-
-            return g;
-        }
-        else if (gt == "EternalGoal")
-        {
-            EternalGoal g = new EternalGoal(pts, tm, d);
-
-            g.SetCompleted(c);
-
-            return g;
-        }
-        else
-        {
-            int bonPoi = int.Parse(str.Split("|")[5]);
-            int numOfTim = int.Parse(str.Split("|")[6]);
-
-            ChecklistGoal g = new ChecklistGoal(pts, tm, bonPoi, numOfTim, d);
-
-            g.SetCompleted(c);
-
-            return g;
-        }
-    }
 
     public void MakeGoalFromInput()
     {
@@ -74,7 +38,7 @@ public class Goals
         }
         while (d == "");
 
-        Console.WriteLine("How many will you earn whenever you meet the goal?");
+        Console.WriteLine("How many points will you earn whenever you meet the goal?");
         int pts = int.Parse(Console.ReadLine());
 
         if (gt == "simple")
@@ -111,7 +75,39 @@ public class Goals
 
         foreach (string line in lines)
         {
-            _goals.Add(GoalFromString(line));
+            string gt = line.Split("|")[0];
+            int pts = int.Parse(line.Split("|")[1]);
+            int tm = int.Parse(line.Split("|")[2]);
+            bool c = bool.Parse(line.Split("|")[3]);
+            string d = line.Split("|")[4];
+
+            if (gt == "SimpleGoal")
+            {
+                SimpleGoal g = new SimpleGoal(pts, tm, d);
+
+                g.SetCompleted(c);
+
+                _goals.Add(g);
+            }
+            else if (gt == "EternalGoal")
+            {
+                EternalGoal g = new EternalGoal(pts, tm, d);
+
+                g.SetCompleted(c);
+
+                _goals.Add(g);
+            }
+            else
+            {
+                int bonPoi = int.Parse(line.Split("|")[5]);
+                int numOfTim = int.Parse(line.Split("|")[6]);
+
+                ChecklistGoal g = new ChecklistGoal(pts, tm, bonPoi, numOfTim, d);
+
+                g.SetCompleted(c);
+
+                _goals.Add(g);
+            }
         }
     }
     public void SaveGoals()
@@ -135,7 +131,6 @@ public class Goals
     }
     public void PrintGoals()
     {
-        //implement Functional Requirements #7!
         foreach (Goal g in _goals)
         {
             if (g.GetState())
@@ -147,10 +142,40 @@ public class Goals
                 Console.Write("[ ] ");
             }
 
-            if (g.GetGoalType() == "Checklist")
+            if (g.GetGoalType() == "ChecklistGoal")
             {
-                Console.Write($"Completed {g.GetTimesMet()}/{g.GetTargetTimesMet()}");
+
+                Console.Write($"Completed {g.GetTimesMet()}/{g.GetTargetTimesMet()}: ");
+            }
+            Console.WriteLine(g.GetDescription());
+        }
+    }
+    public void RecordEvent()
+    {
+        Console.WriteLine("Which goal would you like to record an event for?");
+        for (int i = 0; i < _goals.Count(); i ++)
+        {
+            Goal g = _goals[i];
+
+            Console.WriteLine($"{i} - {g.GetDescription()}");
+        }
+
+        Console.WriteLine("Please enter a number to select a goal.");
+
+        int input = -1;
+
+        do
+        {
+            input = int.Parse(Console.ReadLine());
+            if (input < 0)
+            {
+                Console.WriteLine("Please try again.");
             }
         }
+        while (input < 0);
+
+        _goals[input].MeetsGoal();
+
+        Console.WriteLine("Congratulations! The event has been recorded.");
     }
 }

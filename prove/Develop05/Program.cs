@@ -5,6 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
+        Goals goalList = new Goals();
         bool keepGoing = true;
 
         Console.Write("Hi! ");
@@ -13,11 +14,10 @@ class Program
         {
             int option = 0;
 
-            Goals goalList = new Goals();
             Console.WriteLine("What would you like to do today?");
             Console.WriteLine("1. Display your score");
             Console.WriteLine("2. Create a new goal");
-            Console.WriteLine("3. Record and event");
+            Console.WriteLine("3. Record an event");
             Console.WriteLine("4. Show the list of goals");
             Console.WriteLine("5. Save the list of goals");
             Console.WriteLine("6. Load a list of goals");
@@ -45,8 +45,7 @@ class Program
             }
             else if (option == 3)
             {
-                //Get this option figured out!
-                Console.WriteLine("Sorry, that option isn't working just yet.");
+                goalList.RecordEvent();
             }
             else if (option == 4)
             {
@@ -65,9 +64,14 @@ class Program
                 keepGoing = false;
             }
 
-            Console.WriteLine("Do you wish to keep going? (Press 'y' to continue)");
-            keepGoing = keepGoing && (Console.ReadLine().ToLower() == "y");
+            if (keepGoing)
+            {
+                Console.WriteLine("Do you wish to keep going? (Press 'y' to continue)");
+                keepGoing = (keepGoing && (Console.ReadLine().ToLower() == "y"));
+            }
         }
         while(keepGoing);
+
+        Console.WriteLine("You failed to type 'y'. Ending program.");
     }
 }

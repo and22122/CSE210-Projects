@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class ChecklistGoal:Goal
 {
     private int _bonusPoints;
-    private int _numberOfTimes;
 
     public ChecklistGoal(int p, int tm, int bp, int numOfTimes, string d):base(p, tm, "ChecklistGoal", d)
     {
@@ -12,13 +11,18 @@ public class ChecklistGoal:Goal
         _bonusPoints = bp;
         _numberOfTimes = numOfTimes;
     }
-    public int GetTargetTimesMet()
+    public override int GetTargetTimesMet()
     {
         return _numberOfTimes;
     }
     public override void MeetsGoal()
     {
         _timesMet = Math.Min(_timesMet + 1, _numberOfTimes);
+
+        if (_timesMet == _numberOfTimes)
+        {
+            SetCompleted(true);
+        }
     }
     public override int GetPoints()
     {
@@ -34,7 +38,7 @@ public class ChecklistGoal:Goal
     public override string GetString()
     {
         string str = _goalType + "|" + _points + "|" + _timesMet;
-        str += "|" + _description + "|" + _completed + "|";
+        str += "|" + _completed + "|" + _description + "|";
         str += _bonusPoints + "|" + _numberOfTimes;
 
         return str;

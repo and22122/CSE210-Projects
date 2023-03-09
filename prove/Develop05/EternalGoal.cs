@@ -9,6 +9,8 @@ public class EternalGoal:Goal
     public override void MeetsGoal()
     {
         _timesMet ++;
+
+        SetCompleted(true);
     }
     public override int GetPoints()
     {

@@ -9,6 +9,8 @@ public class SimpleGoal : Goal
     public override void MeetsGoal()
     {
         _timesMet = 1;
+
+        SetCompleted(true);
     }
     public override int GetPoints()
     {

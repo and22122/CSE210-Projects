@@ -8,6 +8,7 @@ public abstract class Goal
     protected bool _completed = false;
     protected string _goalType = "Goal";
     protected string _description = "A normal goal";
+    protected int _numberOfTimes = 1;
     public Goal(int p, int tm, string gt, string desc)
     {
         _points = p;
@@ -18,6 +19,10 @@ public abstract class Goal
     public string GetGoalType()
     {
         return _goalType;
+    }
+    public string GetDescription()
+    {
+        return _description;
     }
     public void SetCompleted(bool c)
     {
@@ -40,5 +45,20 @@ public abstract class Goal
     public virtual string GetString()
     {
         return $"{_goalType}|{_points}|{_timesMet}|{_completed}|{_description}";
+    }
+    public virtual int GetTargetTimesMet()
+    {
+        if (_goalType == "simple")
+        {
+            return 1;
+        }
+        else if (_goalType == "eternal")
+        {
+            return 0;
+        }
+        else
+        {
+            return _numberOfTimes;
+        }
     }
 }
